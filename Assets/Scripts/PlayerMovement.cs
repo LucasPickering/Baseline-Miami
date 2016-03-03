@@ -7,13 +7,11 @@ public class PlayerMovement : MonoBehaviour {
 
 	private CharacterController controller;
 
-	// Use this for initialization
 	void Start () {
 		controller = GetComponent<CharacterController>();
 	}
 
-	// Update is called once per frame
-	void Update () {
+	void FixedUpdate () {
 		float horizSpeed = speed * Input.GetAxis("Horizontal");
 		float vertSpeed = speed * Input.GetAxis("Vertical");
 		controller.Move(new Vector3(horizSpeed, vertSpeed, 0f));
