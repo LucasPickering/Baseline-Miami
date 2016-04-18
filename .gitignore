@@ -26,3 +26,8 @@ ExportedObj/
 sysinfo.txt
 
 *.lnk
+*.exe
+*.pdb
+Baseline-Miami_Data/
+Assets/Standard Assets*
+Assets/Editor*
