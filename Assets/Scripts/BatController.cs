@@ -10,6 +10,7 @@ public class BatController : MonoBehaviour
 	public float endAngle;
 	public float swingForwardRate;
 	public float swingBackRate;
+	public float pauseTime;
 
 	private bool swingForward;
 	private bool swingBack;
@@ -41,6 +42,9 @@ public class BatController : MonoBehaviour
 			transform.RotateAround (player.transform.position, Vector3.forward, swingForwardRate * Time.deltaTime);
 			yield return null;
 		}
+
+		yield return new WaitForSeconds (pauseTime);
+		StartCoroutine ("SwingBack");
 	}
 
 	IEnumerator SwingBack ()

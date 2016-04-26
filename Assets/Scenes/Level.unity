@@ -356,9 +356,9 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 925029763}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.577, y: -12.919, z: -1}
-  m_LocalScale: {x: 4, y: 0.5, z: 10}
+  m_LocalRotation: {x: 0, y: 0, z: 1, w: -0.00000016292068}
+  m_LocalPosition: {x: -0.214, y: -12.884, z: -1}
+  m_LocalScale: {x: 4.8661785, y: 0.5, z: 10}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 4
@@ -407,7 +407,7 @@ HingeJoint2D:
   m_BreakTorque: Infinity
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: 0, y: 0}
-  m_ConnectedAnchor: {x: -0.010333423, y: 0.26100004}
+  m_ConnectedAnchor: {x: -0.0023333733, y: 0.30533338}
   m_UseMotor: 0
   m_Motor:
     m_MotorSpeed: 0
@@ -428,10 +428,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1906901713}
-  startAngle: 240
-  endAngle: 110
-  swingForwardRate: 500
-  swingBackRate: 80
+  startAngle: 50
+  endAngle: 290
+  swingForwardRate: 1000
+  swingBackRate: 200
+  pauseTime: 1
 --- !u!1 &1906901713
 GameObject:
   m_ObjectHideFlags: 0
@@ -503,7 +504,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1906901713}
   m_LocalRotation: {x: 0, y: 0, z: -0.7071068, w: 0.7071067}
-  m_LocalPosition: {x: -1.36, y: -12.95, z: -1}
+  m_LocalPosition: {x: -1.13, y: -12.891, z: -1}
   m_LocalScale: {x: 3, y: 3, z: 3}
   m_Children: []
   m_Father: {fileID: 0}
