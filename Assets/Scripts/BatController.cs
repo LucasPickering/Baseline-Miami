@@ -12,8 +12,7 @@ public class BatController : MonoBehaviour
 	public float swingBackRate;
 	public float pauseTime;
 
-	private bool swingForward;
-	private bool swingBack;
+	private bool inMotion;
 
 	void Start()
 	{
@@ -22,36 +21,31 @@ public class BatController : MonoBehaviour
 
 	void Update ()
 	{
-		if (Input.GetMouseButtonDown (0)) {
-			swingForward = true;
-		}
-	}
-
-	void FixedUpdate ()
-	{
-		if (swingForward) {
-			//transform.RotateAround (player.transform.position, Vector3.forward, 20);
+		if (Input.GetMouseButtonDown (0) && !inMotion) {
 			StartCoroutine ("SwingForward");
-			swingForward = false; // Reset the variable after initiating the swing
 		}
 	}
 
 	IEnumerator SwingForward ()
 	{
+		inMotion = true;
 		while (transform.rotation.eulerAngles.z < endAngle) {
 			transform.RotateAround (player.transform.position, Vector3.forward, swingForwardRate * Time.deltaTime);
 			yield return null;
 		}
 
 		yield return new WaitForSeconds (pauseTime);
+		inMotion = false;
 		StartCoroutine ("SwingBack");
 	}
 
 	IEnumerator SwingBack ()
 	{
+		inMotion = true;
 		while (transform.rotation.eulerAngles.z > startAngle) {
 			transform.RotateAround (player.transform.position, Vector3.back, swingBackRate * Time.deltaTime);
 			yield return null;
 		}
+		inMotion = false;
 	}
 }

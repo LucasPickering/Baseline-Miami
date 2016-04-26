@@ -155,7 +155,6 @@ GameObject:
   - 92: {fileID: 594445297}
   - 124: {fileID: 594445296}
   - 81: {fileID: 594445295}
-  - 114: {fileID: 594445300}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -204,7 +203,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 9.263044
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -225,23 +224,11 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 594445294}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -10}
+  m_LocalPosition: {x: 0, y: -6.5, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
---- !u!114 &594445300
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 594445294}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 981c8e0b3b057ab4fa1f58b58ac88968, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  target: {fileID: 1906901713}
 --- !u!1 &836363655
 GameObject:
   m_ObjectHideFlags: 0
@@ -346,7 +333,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: a88dead9cf3afd64c8dc48336b9b29d8, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 7daebfcb586e52e4180f0fac059deacc, type: 3}
   m_Color: {r: 0.6691177, g: 0, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -431,8 +418,8 @@ MonoBehaviour:
   startAngle: 50
   endAngle: 290
   swingForwardRate: 1000
-  swingBackRate: 200
-  pauseTime: 1
+  swingBackRate: 500
+  pauseTime: 0.5
 --- !u!1 &1906901713
 GameObject:
   m_ObjectHideFlags: 0
@@ -443,6 +430,7 @@ GameObject:
   - 4: {fileID: 1906901716}
   - 212: {fileID: 1906901715}
   - 50: {fileID: 1906901714}
+  - 114: {fileID: 1906901717}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -509,3 +497,16 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 1
+--- !u!114 &1906901717
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1906901713}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31665f700af7b204bb75b4de882c1d8a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ballPrefab: {fileID: 115328, guid: fda729ba74cc6af49b575a8647d3f70b, type: 2}
+  startForce: 100
