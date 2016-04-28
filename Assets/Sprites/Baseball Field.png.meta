@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: 7998a2513381537428c7d388870caa7d
-timeCreated: 1460914502
+guid: 821c5378601c08d4fbcdb56ed5b014b6
+timeCreated: 1461869670
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName: {}
@@ -47,12 +47,7 @@ TextureImporter:
   spritePixelsToUnits: 100
   alphaIsTransparency: 1
   textureType: 8
-  buildTargetSettings:
-  - buildTarget: Standalone
-    maxTextureSize: 2048
-    textureFormat: -3
-    compressionQuality: 50
-    allowsAlphaSplitting: 0
+  buildTargetSettings: []
   spriteSheet:
     sprites: []
     outline: []
