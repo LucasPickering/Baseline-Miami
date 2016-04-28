@@ -18,6 +18,7 @@ public class OpponentBallCollision : MonoBehaviour {
 		foreach (GameObject b in ball) {
 			if (Vector3.Distance (transform.position, b.transform.position) < 1f) {
 				gameObject.active = false;
+				b.gameObject.active = false;
 			}
 		}
 
