@@ -12,11 +12,15 @@ public class BatController : MonoBehaviour
 	public float swingBackRate;
 	public float pauseTime;
 
+	private Rigidbody2D rigidbody;
 	private bool inMotion;
+	private bool swingForward = true;
 
-	void Start()
+	void Start ()
 	{
-		StartCoroutine ("SwingBack");
+		rigidbody = GetComponent<Rigidbody2D> ();
+		rigidbody.centerOfMass = player.transform.position;
+		//StartCoroutine ("SwingBack");
 	}
 
 	void Update ()
@@ -30,7 +34,8 @@ public class BatController : MonoBehaviour
 	{
 		inMotion = true;
 		while (transform.rotation.eulerAngles.z < endAngle) {
-			transform.RotateAround (player.transform.position, Vector3.forward, swingForwardRate * Time.deltaTime);
+			yield return new WaitForFixedUpdate ();
+			RotateAroundPoint (rigidbody, player.transform.position, swingForwardRate * Time.deltaTime);
 			yield return null;
 		}
 
@@ -43,9 +48,23 @@ public class BatController : MonoBehaviour
 	{
 		inMotion = true;
 		while (transform.rotation.eulerAngles.z > startAngle) {
-			transform.RotateAround (player.transform.position, Vector3.back, swingBackRate * Time.deltaTime);
+			RotateAroundPoint (rigidbody, player.transform.position, -swingBackRate * Time.deltaTime);
 			yield return null;
 		}
 		inMotion = false;
+	}
+
+	void RotateAroundPoint (Rigidbody2D rigidbody, Vector2 origin, float diffAngle)
+	{
+		float destAngle = rigidbody.rotation + diffAngle;
+		Vector2 originalPos = rigidbody.position;
+		rigidbody.MovePosition (origin); // Move to the origin
+		rigidbody.MoveRotation (destAngle); // Rotate around the origin
+
+		float sin = Mathf.Sin(diffAngle * Mathf.Deg2Rad);
+		float cos = Mathf.Cos(diffAngle * Mathf.Deg2Rad);
+		Vector2 newPos = new Vector2 (rigidbody.position.x * cos - rigidbody.position.y * sin, rigidbody.position.x * sin + rigidbody.position.y * cos);
+		Debug.Log (newPos);
+		rigidbody.MovePosition (newPos); // Move back
 	}
 }
