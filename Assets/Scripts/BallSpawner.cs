@@ -13,7 +13,7 @@ public class BallSpawner : MonoBehaviour
 	void Update ()
 	{
 		if (Input.GetKeyDown (KeyCode.Space)) {
-			GameObject ball = (GameObject)Instantiate (ballPrefab, new Vector3 (0, 0, -1), Quaternion.identity);
+			GameObject ball = (GameObject)Instantiate (ballPrefab, ballPrefab.transform.position, Quaternion.identity);
 			ball.GetComponent<Rigidbody2D> ().velocity = new Vector2 (0f, -Random.Range (minSpeed, maxSpeed)); // Random start speed in range
 			Destroy(ball, lifeTime); // Kill the ball after a certain amount of time
 		}
