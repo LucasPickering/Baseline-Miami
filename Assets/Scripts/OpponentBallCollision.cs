@@ -4,6 +4,7 @@ using System.Collections;
 public class OpponentBallCollision : MonoBehaviour {
 
 	private GameObject[] ball;
+	public Transform explosion;
 
 	// Use this for initialization
 	void Start () {
@@ -17,17 +18,11 @@ public class OpponentBallCollision : MonoBehaviour {
 
 		foreach (GameObject b in ball) {
 			if (Vector3.Distance (transform.position, b.transform.position) < 1f) {
-				gameObject.active = false;
-				b.gameObject.active = false;
+				Destroy(this.gameObject);
+				Destroy(b.gameObject);
+				Instantiate (explosion, this.transform.position, Quaternion.identity);
 			}
 		}
 
 	}
-	/*
-	void OnCollisionEnter2D(Collision2D target) {
-		if (target.gameObject.name == "Ball(Clone)") {
-			gameObject.active = false;
-		}
-	}
-	*/
 }
