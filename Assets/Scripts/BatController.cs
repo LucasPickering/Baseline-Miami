@@ -20,7 +20,7 @@ public class BatController : MonoBehaviour
 	{
 		rigidbody = GetComponent<Rigidbody2D> ();
 		rigidbody.centerOfMass = player.transform.position;
-		//StartCoroutine ("SwingBack");
+		StartCoroutine ("SwingBack");
 	}
 
 	void Update ()
@@ -54,17 +54,10 @@ public class BatController : MonoBehaviour
 		inMotion = false;
 	}
 
-	void RotateAroundPoint (Rigidbody2D rigidbody, Vector2 origin, float diffAngle)
+	void RotateAroundPoint (Rigidbody2D rigidbody, Vector3 origin, float diffAngle)
 	{
-		float destAngle = rigidbody.rotation + diffAngle;
-		Vector2 originalPos = rigidbody.position;
-		rigidbody.MovePosition (origin); // Move to the origin
-		rigidbody.MoveRotation (destAngle); // Rotate around the origin
-
-		float sin = Mathf.Sin(diffAngle * Mathf.Deg2Rad);
-		float cos = Mathf.Cos(diffAngle * Mathf.Deg2Rad);
-		Vector2 newPos = new Vector2 (rigidbody.position.x * cos - rigidbody.position.y * sin, rigidbody.position.x * sin + rigidbody.position.y * cos);
-		Debug.Log (newPos);
-		rigidbody.MovePosition (newPos); // Move back
+		Quaternion q = Quaternion.Euler(0f, 0f, diffAngle); // Quaternion to rotate with
+		rigidbody.MovePosition(q * (transform.position - origin) + origin); // Move to the new position
+    rigidbody.MoveRotation((transform.rotation * q).eulerAngles.z); // Rotate to the new angle
 	}
 }
