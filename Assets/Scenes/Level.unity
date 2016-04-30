@@ -427,6 +427,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 599886740}
   - 212: {fileID: 599886739}
+  - 114: {fileID: 599886741}
   m_Layer: 0
   m_Name: Ball Shooter
   m_TagString: Untagged
@@ -476,6 +477,21 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 6
+--- !u!114 &599886741
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 599886738}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31665f700af7b204bb75b4de882c1d8a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ballPrefab: {fileID: 115328, guid: fda729ba74cc6af49b575a8647d3f70b, type: 2}
+  minSpeed: 6
+  maxSpeed: 18
+  lifeTime: 6
 --- !u!1001 &784114982
 Prefab:
   m_ObjectHideFlags: 0
@@ -959,8 +975,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 1906901716}
   - 212: {fileID: 1906901715}
-  - 50: {fileID: 1906901714}
-  - 114: {fileID: 1906901717}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -968,23 +982,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!50 &1906901714
-Rigidbody2D:
-  serializedVersion: 2
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1906901713}
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 1
-  m_IsKinematic: 1
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
 --- !u!212 &1906901715
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1027,21 +1024,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 2
---- !u!114 &1906901717
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1906901713}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 31665f700af7b204bb75b4de882c1d8a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ballPrefab: {fileID: 115328, guid: fda729ba74cc6af49b575a8647d3f70b, type: 2}
-  minSpeed: 6
-  maxSpeed: 18
-  lifeTime: 6
 --- !u!1001 &1971857936
 Prefab:
   m_ObjectHideFlags: 0
