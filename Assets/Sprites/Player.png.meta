@@ -1,10 +1,9 @@
 fileFormatVersion: 2
-guid: b1c9c1dc74ddf254b8c60c97150ae388
-timeCreated: 1457037381
+guid: 235d8387d28194d4dbce80df6bae0893
+timeCreated: 1461978508
 licenseType: Free
 TextureImporter:
-  fileIDToRecycleName:
-    21300000: Sprites_0
+  fileIDToRecycleName: {}
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -30,7 +29,7 @@ TextureImporter:
   textureFormat: -1
   maxTextureSize: 2048
   textureSettings:
-    filterMode: -1
+    filterMode: 0
     aniso: 16
     mipBias: -1
     wrapMode: 1
@@ -45,27 +44,17 @@ TextureImporter:
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 10
   alphaIsTransparency: 1
   textureType: 8
-  buildTargetSettings: []
+  buildTargetSettings:
+  - buildTarget: Standalone
+    maxTextureSize: 2048
+    textureFormat: -3
+    compressionQuality: 50
+    allowsAlphaSplitting: 0
   spriteSheet:
-    sprites:
-    - name: Sprites_0
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 0
-        width: 1152
-        height: 648
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -576, y: 324}
-        - {x: -576, y: -324}
-        - {x: 576, y: -324}
-        - {x: 576, y: 324}
+    sprites: []
     outline: []
   spritePackingTag: 
   userData: 
