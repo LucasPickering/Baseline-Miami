@@ -18,10 +18,12 @@ public class BatController : MonoBehaviour
 	private bool inMotion;
 	private bool swingingForward;
 	private bool swingingBack;
+	private AudioSource audioSource;
 
 	void Start ()
 	{
 		rigidbody = GetComponent<Rigidbody2D> ();
+		audioSource = GetComponent<AudioSource> ();
 		Timing.RunCoroutine (SwingBack (), Segment.FixedUpdate);
 	}
 
@@ -32,21 +34,10 @@ public class BatController : MonoBehaviour
 		}
 	}
 
-	void FixedUpdate ()
+	void OnCollisionEnter2D(Collision2D collision)
 	{
-		if (swingingForward) {
-			if (rigidbody.rotation < endAngle) {
-				rigidbody.MoveRotation (rigidbody.rotation + swingForwardRate * Time.fixedDeltaTime); // Rotate to the new angle
-			} else {
-				swingingForward = false;
-				swingingBack = true;
-			}
-		} else if (swingingBack) {
-			if (rigidbody.rotation > startAngle) {
-				rigidbody.MoveRotation (rigidbody.rotation - swingForwardRate * Time.fixedDeltaTime); // Rotate to the new angle
-			} else {
-				swingingBack = false;
-			}
+		if(collision.gameObject.CompareTag("Ball")) {
+			audioSource.Play();
 		}
 	}
 

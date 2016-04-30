@@ -6,16 +6,6 @@ public class OpponentBallCollision : MonoBehaviour
 
 	public GameObject deathSprite;
 
-	void Update()
-	{
-		/*
-		if (Input.GetKeyDown (KeyCode.Space)) {
-			Debug.Log ("Sound");
-			audioSource.PlayOneShot(audioClips[Random.Range(0, audioClips.Length)]); // Play a death sound
-		}
-		*/
-	}
-
 	void OnCollisionEnter2D (Collision2D collision)
 	{
 		if (collision.gameObject.CompareTag ("Ball")) {
