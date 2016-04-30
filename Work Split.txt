@@ -1,0 +1,7 @@
+Lucas
+-----
+Most textures, bat/ball physics
+
+Chris
+-----
+Enemy AI, enemy destruction, UI

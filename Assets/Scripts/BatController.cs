@@ -12,14 +12,12 @@ public class BatController : MonoBehaviour
 	public float swingBackRate;
 	public float pauseTime;
 
-	private Rigidbody2D rigidbody;
+	private new Rigidbody2D rigidbody;
 	private bool inMotion;
-	private bool swingForward = true;
 
 	void Start ()
 	{
 		rigidbody = GetComponent<Rigidbody2D> ();
-		rigidbody.centerOfMass = player.transform.position;
 		StartCoroutine ("SwingBack");
 	}
 
@@ -30,16 +28,20 @@ public class BatController : MonoBehaviour
 		}
 	}
 
+	void FixedUpdate()
+	{
+	}
+
 	IEnumerator SwingForward ()
 	{
 		inMotion = true;
 		while (transform.rotation.eulerAngles.z < endAngle) {
-			yield return new WaitForFixedUpdate ();
-			RotateAroundPoint (rigidbody, player.transform.position, swingForwardRate * Time.deltaTime);
+			yield return new WaitForFixedUpdate (); // Wait for physics loop before rotating
+			RotateAroundPoint (rigidbody, player.transform.position, swingForwardRate * Time.fixedDeltaTime);
 			yield return null;
 		}
 
-		yield return new WaitForSeconds (pauseTime);
+		yield return new WaitForSeconds (pauseTime); // Pause for a bit
 		inMotion = false;
 		StartCoroutine ("SwingBack");
 	}
@@ -48,7 +50,8 @@ public class BatController : MonoBehaviour
 	{
 		inMotion = true;
 		while (transform.rotation.eulerAngles.z > startAngle) {
-			RotateAroundPoint (rigidbody, player.transform.position, -swingBackRate * Time.deltaTime);
+			yield return new WaitForFixedUpdate (); // Wait for physics loop before rotating
+			RotateAroundPoint (rigidbody, player.transform.position, -swingBackRate * Time.fixedDeltaTime);
 			yield return null;
 		}
 		inMotion = false;
