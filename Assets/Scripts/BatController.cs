@@ -1,10 +1,13 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 using MovementEffects;
 
 public class BatController : MonoBehaviour
 {
 
+	[SerializeField]
+	public GameObject player;
 	public float startAngle;
 	public float endAngle;
 	public float swingForwardRate;
@@ -19,13 +22,13 @@ public class BatController : MonoBehaviour
 	void Start ()
 	{
 		rigidbody = GetComponent<Rigidbody2D> ();
-		StartCoroutine ("SwingBack");
+		Timing.RunCoroutine (SwingBack (), Segment.FixedUpdate);
 	}
 
 	void Update ()
 	{
 		if (Input.GetMouseButtonDown (0) && !inMotion) {
-			StartCoroutine ("SwingForward");
+			Timing.RunCoroutine (SwingForward (), Segment.FixedUpdate);
 		}
 	}
 
@@ -51,20 +54,22 @@ public class BatController : MonoBehaviour
 	{
 		inMotion = true;
 		while (transform.rotation.eulerAngles.z < endAngle) {
-			rigidbody.MoveRotation (rigidbody.rotation + swingForwardRate * Time.fixedDeltaTime); // Rotate to the new angle
+			//rigidbody.MoveRotation (rigidbody.rotation + swingForwardRate * Time.fixedDeltaTime); // Rotate to the new angle
+			RotateAroundPoint(rigidbody, player.transform.position, swingForwardRate * Time.fixedDeltaTime);
 			yield return 0;
 		}
 
 		yield return Timing.WaitForSeconds (pauseTime); // Pause for a bit
 		inMotion = false;
-		StartCoroutine ("SwingBack");
+		Timing.RunCoroutine (SwingBack (), Segment.FixedUpdate);
 	}
 
 	private IEnumerator<float> SwingBack ()
 	{
 		inMotion = true;
 		while (transform.rotation.eulerAngles.z > startAngle) {
-			rigidbody.MoveRotation (rigidbody.rotation - swingForwardRate * Time.fixedDeltaTime); // Rotate to the new angle
+			//rigidbody.MoveRotation (rigidbody.rotation - swingForwardRate * Time.fixedDeltaTime); // Rotate to the new angle
+			RotateAroundPoint(rigidbody, player.transform.position, -swingBackRate * Time.fixedDeltaTime);
 			yield return 0;
 		}
 		inMotion = false;
@@ -74,5 +79,6 @@ public class BatController : MonoBehaviour
 	{
 		Quaternion q = Quaternion.Euler (0f, 0f, diffAngle); // Quaternion to rotate with
 		rigidbody.MovePosition (q * (transform.position - origin) + origin); // Move to the new position
+		rigidbody.MoveRotation((transform.rotation * q).eulerAngles.z); // Rotate to the new angle
 	}
 }

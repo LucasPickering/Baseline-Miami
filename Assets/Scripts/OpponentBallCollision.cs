@@ -4,16 +4,7 @@ using System.Collections;
 public class OpponentBallCollision : MonoBehaviour
 {
 
-	[SerializeField]
-	public AudioClip[] audioClips;
 	public GameObject deathSprite;
-
-	private AudioSource audioSource;
-
-	void Start()
-	{
-		audioSource = GetComponent<AudioSource> ();
-	}
 
 	void Update()
 	{
@@ -34,7 +25,7 @@ public class OpponentBallCollision : MonoBehaviour
 
 	private void Kill (GameObject ball)
 	{
-		audioSource.PlayOneShot(audioClips[Random.Range(0, audioClips.Length)]); // Play a death sound
+		
 		Destroy (gameObject); // Kill me
 		Destroy (ball.gameObject); // Kill the ball (misery loves company)
 		Instantiate(deathSprite, transform.position, Quaternion.identity); // Splat
