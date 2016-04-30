@@ -11,17 +11,9 @@ public class BallSpawner : MonoBehaviour
 	public float lifeTime;
 	public float spawnInterval;
 
-	void Update ()
+	void Start ()
 	{
-		StartCoroutine ("SpawnBalls");
-	}
-
-	IEnumerator SpawnBalls()
-	{
-		while (true) {
-			SpawnBall ();
-			yield return new WaitForSeconds(spawnInterval);
-		}
+		InvokeRepeating ("SpawnBall", spawnInterval, spawnInterval); // Spawn a ball every few seconds
 	}
 
 	private void SpawnBall()

@@ -268,7 +268,7 @@ Transform:
   m_LocalScale: {x: 6.508872, y: 5.6052465, z: 5.6052465}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 4
 --- !u!114 &266484605
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -489,9 +489,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ballPrefab: {fileID: 115328, guid: fda729ba74cc6af49b575a8647d3f70b, type: 2}
-  minSpeed: 6
-  maxSpeed: 18
+  minSpeed: 12
+  maxSpeed: 16
   lifeTime: 6
+  spawnInterval: 2
 --- !u!1001 &784114982
 Prefab:
   m_ObjectHideFlags: 0
