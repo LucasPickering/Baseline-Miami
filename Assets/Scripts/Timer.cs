@@ -20,7 +20,7 @@ public class Timer : MonoBehaviour {
 			Time.timeScale = 0;
 		} else {
 			timer += Time.deltaTime;
-			gameObject.GetComponent<Text> ().text = timer.ToString ("f2");
+			gameObject.GetComponent<Text> ().text = timer.ToString ("f1");
 		}
 	}
 }

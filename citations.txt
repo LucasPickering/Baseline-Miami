@@ -1,0 +1,4 @@
+Blood splat sounds were acquired from http://soundbible.com/tags-blood.html
+We used Memory Efficient Coroutines from https://www.assetstore.unity3d.com/en/#!/content/54975
+
+Everything else was made by us.

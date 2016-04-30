@@ -4,19 +4,17 @@ using System.Collections;
 
 public class Pitches : MonoBehaviour {
 
+	private Text text;
 	private int count;
 
-	// Use this for initialization
-	void Start () {
-		count = 0;
+	void Start()
+	{
+		text = GetComponent<Text> ();
+		text.text = "Pitches: " + count;
 	}
-	
-	// Update is called once per frame
-	void Update () {
-		if (Input.GetKeyDown ("space")) {
-			count = count + 1;
-		}
 
-		gameObject.GetComponent<Text> ().text = "Pitches: " + count.ToString ();
+	public void AddPitch() {
+		count++;
+		text.text = "Pitches: " + count;
 	}
 }

@@ -1,11 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
+using MovementEffects;
 
 public class BatController : MonoBehaviour
 {
 
-	[SerializeField]
-	public GameObject player;
 	public float startAngle;
 	public float endAngle;
 	public float swingForwardRate;
@@ -14,6 +13,8 @@ public class BatController : MonoBehaviour
 
 	private new Rigidbody2D rigidbody;
 	private bool inMotion;
+	private bool swingingForward;
+	private bool swingingBack;
 
 	void Start ()
 	{
@@ -28,39 +29,50 @@ public class BatController : MonoBehaviour
 		}
 	}
 
-	void FixedUpdate()
+	void FixedUpdate ()
 	{
+		if (swingingForward) {
+			if (rigidbody.rotation < endAngle) {
+				rigidbody.MoveRotation (rigidbody.rotation + swingForwardRate * Time.fixedDeltaTime); // Rotate to the new angle
+			} else {
+				swingingForward = false;
+				swingingBack = true;
+			}
+		} else if (swingingBack) {
+			if (rigidbody.rotation > startAngle) {
+				rigidbody.MoveRotation (rigidbody.rotation - swingForwardRate * Time.fixedDeltaTime); // Rotate to the new angle
+			} else {
+				swingingBack = false;
+			}
+		}
 	}
 
-	IEnumerator SwingForward ()
+	private IEnumerator<float> SwingForward ()
 	{
 		inMotion = true;
 		while (transform.rotation.eulerAngles.z < endAngle) {
-			yield return new WaitForFixedUpdate (); // Wait for physics loop before rotating
-			RotateAroundPoint (rigidbody, player.transform.position, swingForwardRate * Time.fixedDeltaTime);
-			yield return null;
+			rigidbody.MoveRotation (rigidbody.rotation + swingForwardRate * Time.fixedDeltaTime); // Rotate to the new angle
+			yield return 0;
 		}
 
-		yield return new WaitForSeconds (pauseTime); // Pause for a bit
+		yield return Timing.WaitForSeconds (pauseTime); // Pause for a bit
 		inMotion = false;
 		StartCoroutine ("SwingBack");
 	}
 
-	IEnumerator SwingBack ()
+	private IEnumerator<float> SwingBack ()
 	{
 		inMotion = true;
 		while (transform.rotation.eulerAngles.z > startAngle) {
-			yield return new WaitForFixedUpdate (); // Wait for physics loop before rotating
-			RotateAroundPoint (rigidbody, player.transform.position, -swingBackRate * Time.fixedDeltaTime);
-			yield return null;
+			rigidbody.MoveRotation (rigidbody.rotation - swingForwardRate * Time.fixedDeltaTime); // Rotate to the new angle
+			yield return 0;
 		}
 		inMotion = false;
 	}
 
 	void RotateAroundPoint (Rigidbody2D rigidbody, Vector3 origin, float diffAngle)
 	{
-		Quaternion q = Quaternion.Euler(0f, 0f, diffAngle); // Quaternion to rotate with
-		rigidbody.MovePosition(q * (transform.position - origin) + origin); // Move to the new position
-    rigidbody.MoveRotation((transform.rotation * q).eulerAngles.z); // Rotate to the new angle
+		Quaternion q = Quaternion.Euler (0f, 0f, diffAngle); // Quaternion to rotate with
+		rigidbody.MovePosition (q * (transform.position - origin) + origin); // Move to the new position
 	}
 }

@@ -6,6 +6,8 @@ public class BallSpawner : MonoBehaviour
 
 	[SerializeField]
 	public GameObject ballPrefab;
+	[SerializeField]
+	public Pitches pitchCounter;
 	public float minSpeed;
 	public float maxSpeed;
 	public float lifeTime;
@@ -21,5 +23,6 @@ public class BallSpawner : MonoBehaviour
 		GameObject ball = (GameObject)Instantiate (ballPrefab, ballPrefab.transform.position, Quaternion.identity); // Spawn the ball
 		ball.GetComponent<Rigidbody2D> ().velocity = new Vector2 (0f, -Random.Range (minSpeed, maxSpeed)); // Random start speed in range
 		Destroy(ball, lifeTime); // Kill the ball after a certain amount of time
+		pitchCounter.AddPitch(); // Add a pitch to the counter
 	}
 }
