@@ -73,7 +73,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26fcacdbae5aefd46991264d1bb824a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  explosion: {fileID: 0}
+  deathSprite: {fileID: 178860, guid: ea3e7849418ff4147877716316e669b3, type: 2}
 --- !u!212 &21299280
 SpriteRenderer:
   m_ObjectHideFlags: 1
